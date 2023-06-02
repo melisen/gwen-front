@@ -1,0 +1,19 @@
+.contadorCarrito{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.contador{
+color:#829e04d7;
+}
+.contenedorCentrarBtn{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.seVeBoton{
+    display: block;
+}
+.NoSeVeBoton{
+    display:none;
+}

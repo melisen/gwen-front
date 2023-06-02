@@ -1,0 +1,43 @@
+
+.navBarContainer{
+    display:flex;
+    flex-wrap: wrap;
+}
+.divBrand{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right:15px;
+}
+.logoDragonDorado{
+    margin-right:10px;
+}
+.typographyBrand{
+    font-family: 'Modern Antiqua', sans-serif;
+    color: #ece6c3;
+    margin-left:10px;
+    text-decoration:none;
+}
+.fantasyStore{
+    color:#e0f193d7;
+}
+
+.cartWidget{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    color:#ece6c3;
+}
+.SeVe{
+    display:block;
+}
+.NoSeVe{
+    display:none;
+}
+
+/*MEDIA QUERY PARA SMARTPHONE*/
+@media (max-width: 480px) {
+    .fantasyStore{
+        display:none;
+    }
+}

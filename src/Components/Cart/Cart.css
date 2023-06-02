@@ -1,0 +1,33 @@
+
+.divCart{
+    width:85%;
+    border-radius: 20px;
+    background-color: #283322;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin:50px auto;
+}
+.divFinalizarCompra{
+    width:85%;
+    height:8rem;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    padding:1rem;
+    justify-content: space-evenly;
+}
+.SeVe{
+    display:block;
+}
+.NoSeVe{
+    display:none;
+}
+
+/*MEDIA QUERY PARA SMARTPHONE*/
+@media (max-width: 480px) {
+    .divCart{
+        width:100%;
+    }
+}

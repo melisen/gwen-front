@@ -1,0 +1,45 @@
+
+.itemDetail{
+    display: flex;
+}
+.divItemCount{
+    min-height:300px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.columnaImagen{
+    width:40%;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    color:#698003d7;
+}
+.imagenDetail{
+    height: 26rem;
+    margin:1.5rem auto;
+}
+
+.NoSeVeBoton{
+    display:none;
+}
+
+
+
+
+/*MEDIA QUERY PARA SMARTPHONE*/
+@media (max-width: 480px) {
+    .itemDetail{
+        display: flex;
+        flex-direction: column;
+    }
+    .columnaImagen{
+        width: auto;
+    }
+    .imagenDetail{
+    height:20rem;
+    }
+
+}
