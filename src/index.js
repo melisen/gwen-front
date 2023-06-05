@@ -6,17 +6,21 @@ import reportWebVitals from './reportWebVitals';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 const themeGwen = createTheme({
   palette:{
-    mode: 'dark',
+    mode: 'light',
     primary:{
-      main: '#698003d7',
-      light:'#e0f193d7'
+      main: '#113f60',
+      light:'#50b5cb'
     },
     secondary:{
-      main: '#ece6c3'
+      main: '#caad42',
+      dark:'#4a2222'
     },
     action:{
-      active:'#ece6c3',
-      hover:'#e0f193d7'
+      active:'#cda280',
+      hover:'#4a2222'
+    },
+    info:{
+      main:'#b4d5cb'
     }
   },
   typography:{
@@ -26,10 +30,7 @@ const themeGwen = createTheme({
       lineHeight:1.8
     },
     h5:{
-      fontSize:"1.2rem",
-      lineHeight:1.8,
-      marginTop:8,
-      marginBottom:8
+      fontSize:"1rem",
     },
     button:{
       fontFamily: 'Modern Antiqua'

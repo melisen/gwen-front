@@ -2,6 +2,7 @@
 .navBarContainer{
     display:flex;
     flex-wrap: wrap;
+    background-color: #113f60;
 }
 .divBrand{
     display: flex;
@@ -14,19 +15,19 @@
 }
 .typographyBrand{
     font-family: 'Modern Antiqua', sans-serif;
-    color: #ece6c3;
+    color: #ebe3d1;
     margin-left:10px;
     text-decoration:none;
 }
 .fantasyStore{
-    color:#e0f193d7;
+    color:#cda280;
 }
 
 .cartWidget{
     display: flex;
     flex-direction:row;
     align-items: center;
-    color:#ece6c3;
+    color:#cda280;
 }
 .SeVe{
     display:block;

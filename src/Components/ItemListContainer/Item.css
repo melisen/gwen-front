@@ -1,18 +1,15 @@
 .ItemList{
     display:flex;
+    flex-direction:row;
+    justify-content: space-between;
     flex-wrap: wrap;
+
 }
-.cardArticulo{
-    max-width:250px;
-    margin: 15px auto;
+.cardArticulo{    
+    margin: 15px 1rem;
     transition: 200ms ;
     
 }
-.cardArticulo:hover {
-    width:295px;
-    background-color:#212b1c;
-
- }
  
 .contenedorImagen{
     display:flex;
@@ -25,6 +22,7 @@
 .titleArticulo{
     height:2.8rem;
     text-align:center;
+    font-family: 'Metamorphous';
 
 }
 

@@ -17,7 +17,7 @@ import { MyCartContext } from "../../Context/CartContext";
 
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: '#283322',
+  backgroundColor: theme.palette.secondary.dark,
   ...theme.typography.h5,
   padding: theme.spacing(1),
   margin:theme.spacing(0.5),
@@ -31,11 +31,11 @@ const ItemEstiloBotonera = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   margin:theme.spacing(0),
   textAlign: 'center',
-  color: '#283322',
+  color: theme.palette.secondary.dark,
 }));
 
 const ItemTexto = styled(Paper)(({ theme }) => ({
-  backgroundColor: '#283322',
+  backgroundColor: theme.palette.secondary.dark,
   ...theme.typography.body1,
   padding: theme.spacing(1),
   margin:theme.spacing(0.5),
