@@ -20,9 +20,12 @@ export default function Item( {_id, title, price, thumbnail}) {
 
     <Card sx={{ width: 250 }} className="cardArticulo">
       <CardMedia
-        sx={{ height: 140 }}
+        sx={{ height: 140, objectFit:'contain' }}
         image={thumbnail}
         title={title}
+        component='img'
+        className="cardImage"
+        
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div" color='primary.main' style={{fontFamily: 'Modern Antiqua'}}>

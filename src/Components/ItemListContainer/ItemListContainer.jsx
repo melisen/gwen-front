@@ -3,7 +3,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import React from 'react'
 import ItemList from './ItemList'
 import { useEffect, useState } from 'react';
-//import { useParams} from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 
 
 export default function ItemListContainer() {
@@ -11,11 +11,38 @@ export default function ItemListContainer() {
   const [error, setError] = useState(false);
   const [productosLista, setProductosLista] = useState([]);
 
-  //let {idCategory} = useParams();
-  
-    useEffect( ()=>{
-      
+  let {idCategory} = useParams();
 
+  useEffect( ()=>{
+    const ejecutarFetch = async (url) =>{
+      try {
+          const response = await fetch(url);
+          const result = await response.json();
+          return result
+      } catch (error) {
+          console.error(error);
+      }
+      }
+
+      ejecutarFetch("./json-local/productos.json")
+      .then(res => {
+        if(idCategory){
+          const prodCateg = res.filter(item => item.category === idCategory);
+          setProductosLista(prodCateg);
+        }else{
+          setProductosLista(res);
+        }
+      })
+          .catch((error)=>{
+              setError(true);
+          })
+          .finally( ()=>{
+              setLoading(false);
+          })
+  
+      }, [idCategory]);
+  /*
+    useEffect( ()=>{
       const ejecutarFetch = async (url) =>{
         try {
             const response = await fetch(url);
@@ -24,8 +51,7 @@ export default function ItemListContainer() {
         } catch (error) {
             console.error(error);
         }
-        }
-      
+        }      
         ejecutarFetch("http://localhost:8080/api/gwen")
         .then(res => {
             setProductosLista(res);
@@ -36,10 +62,13 @@ export default function ItemListContainer() {
         .finally( ()=>{
             setLoading(false);
         })
-
     }, []);
 //*por ahora vemos todos los productos
 //*en array de dependencias iría idCategory porque el useEffect se ejecutaría al entrar en la url de la categoría
+*/
+
+
+
         
 
   return (

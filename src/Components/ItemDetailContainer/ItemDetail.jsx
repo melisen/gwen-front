@@ -77,7 +77,7 @@ export default function ItemDetail({itemProducto}) {
     <Box sx={{marginBottom:'30px', flexGrow: 1 }} >
       <div className='itemDetail'>
         <div className="columnaImagen">
-            <img src={itemProducto.pictureURL} alt={itemProducto.title} className="imagenDetail"/>
+            <img src={itemProducto.thumbnail} alt={itemProducto.title} className="imagenDetail"/>
         </div>
         <div item xs={6} className='columnaInfo'>
           <Item>{itemProducto.title}</Item>

@@ -16,7 +16,7 @@ import "./NavBar.css"
 import CartWidget from "./CartWidget.jsx";
 import {Link} from 'react-router-dom';
 
-const pages = ['Libros', 'Chops', 'Indumentaria'];
+const pages = ['libros', 'chops', 'indumentaria'];
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
