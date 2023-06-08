@@ -7,6 +7,7 @@ import ItemDetailContainer from './Components/ItemDetailContainer/ItemDetailCont
 import NavBar from "./Components/Navbar/NavBar";
 import Footer from "./Components/Footer/Footer"
 import Cart from"./Components/Cart/Cart.jsx";
+import EntryForm from "./Components/FormProducts/EntryForm"
 //import CheckOut from './Components/CheckOut/CheckOut.jsx';
 //<Route path="/checkout" element={<CheckOut />} />
 
@@ -20,8 +21,8 @@ function App() {
     <Route path="/" element={<ItemListContainer />} />
         <Route path="/category/:idCategory" element={<ItemListContainer />} />
         <Route path="/item/:idItem" element={<ItemDetailContainer />} />
-        <Route path="/cart" element={<Cart />} />
-        
+        <Route path="/cart" element={<Cart />} /> 
+        <Route path="/admin" element={<EntryForm />} />
       </Routes>
       <Footer />
     </div>
