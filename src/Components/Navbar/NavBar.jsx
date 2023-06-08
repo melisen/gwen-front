@@ -41,7 +41,7 @@ const ResponsiveAppBar = () => {
         <Link to={"/"}  style={{  textDecoration: 'none' }} >
         <div className="divBrand">
               
-              <Typography variant="h3" component="div" className="typographyBrand" sx={{ flexGrow: 1, color:'secondary' }}>
+              <Typography variant="h1" component="div" className="typographyBrand" sx={{ flexGrow: 1, color:'secondary' }}>
               Gwendolyn
               </Typography>
         </div>

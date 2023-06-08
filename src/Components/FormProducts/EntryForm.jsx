@@ -96,7 +96,7 @@ export default function EntryForm() {
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <CreateIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h1" my={2}>
             Entrada de productos
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
@@ -157,10 +157,7 @@ export default function EntryForm() {
               label="Stock inicial"
               id="stock"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+          
             <Button
               type="submit"
               fullWidth
@@ -178,7 +175,7 @@ export default function EntryForm() {
                 <Table  aria-label="simple table">
                     <TableBody>
                         {productosLista.map((row) => (
-                        <TableRow  key={row._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}  >
+                        <TableRow  key={row._id} sx={{ '&:last-child td, &:last-child th': { border: 0,  } }}  >
                             <TableCell align="center">{row.stock}</TableCell>
                             <TableCell align="center" >{row.title}</TableCell>                    
                             <TableCell align="center">${row.price}</TableCell>

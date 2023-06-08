@@ -4,6 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import "./fonts/fonts.css"
+import "./fonts/KellyAnnGothic.ttf"
+
+
 const themeGwen = createTheme({
   palette:{
     mode: 'light',
@@ -24,19 +28,22 @@ const themeGwen = createTheme({
     }
   },
   typography:{
-    fontFamily: 'Metamorphous',
+    fontFamily: 'Arima',
     h3:{
+      fontFamily: 'Modern Antiqua',
       fontSize:"2rem",
       lineHeight:1.8
     },
-    h5:{
-      fontSize:"1rem",
+    h1:{
+      fontFamily: 'goth',
+      fontSize:"2.5rem",
+     
     },
     button:{
       fontFamily: 'Modern Antiqua'
     },
     body1:{
-      fontFamily: 'Joan'
+      fontFamily: 'Arima'
     }
   }
 

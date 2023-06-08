@@ -1,0 +1,5 @@
+@font-face {
+    font-family: "goth";   /*Can be any text*/
+    src: local("KellyAnnGothic"),
+      url("./KellyAnnGothic.ttf") format("truetype");
+  }
