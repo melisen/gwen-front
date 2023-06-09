@@ -2,7 +2,7 @@
     {
         "_id": "1",
         "category": "chops",
-        "title":"Chop De Madera De Algarrobo Con Vaso De Acero Inoxidable",
+        "title":"Chop de Algarrobo, Vaso De Acero Inoxidable",
         "price": 2800,
         "description": "500 mL. Altura: 17 cm. Diámetro de la boca: 10 cm. Material: Madera",
         "stock": 1,
@@ -11,7 +11,7 @@
     {
         "_id": "2",
         "category": "chops",
-        "title":"Chop Cervecero Artesanal,madera Algarrobo Con Vaso Aluminio",
+        "title":"Chop Cervecero Algarrobo, Vaso de Aluminio",
         "price": 3700,
         "description": "500 mL. Altura: 15 cm. Diámetro de la boca: 9 cm. Material: Algarrobo",
         "stock":1,

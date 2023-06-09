@@ -16,8 +16,9 @@ const themeGwen = createTheme({
       light:'#50b5cb'
     },
     secondary:{
+      light:'#ebe3d1',
       main: '#caad42',
-      dark:'#4a2222'
+      dark:'#260606'
     },
     action:{
       active:'#cda280',
@@ -29,15 +30,18 @@ const themeGwen = createTheme({
   },
   typography:{
     fontFamily: 'Arima',
-    h3:{
-      fontFamily: 'Modern Antiqua',
-      fontSize:"2rem",
-      lineHeight:1.8
-    },
     h1:{
       fontFamily: 'goth',
       fontSize:"2.5rem",
      
+    },
+    h3:{
+      fontFamily: 'Modern Antiqua', 
+      fontSize:"2rem",
+      lineHeight:1.8
+    },
+    h5:{
+      fontSize:"1rem",
     },
     button:{
       fontFamily: 'Modern Antiqua'
