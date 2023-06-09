@@ -4,8 +4,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import CreateIcon from '@mui/icons-material/Create';
@@ -22,6 +20,7 @@ import TableHead from '@mui/material/TableHead';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import "./EntryForm.css"
 
 
@@ -44,22 +43,35 @@ export default function EntryForm() {
     const [productsFormData, setProductsFormData] = useState({})
     const [error, setError] = useState(false);
     const [productosLista, setProductosLista] = useState([]);
-    const [category, setCategory] = React.useState('');
-    const handleChange = (event) => {
-        setCategory(event.target.value);
-    };
 
+    const categories = [
+      {
+        value:'libros',
+        label: 'Libros'
+      },
+      {
+        value:'chops',
+        label: 'Chops'
+      },
+      {
+        value:'indumentaria',
+        label: 'Indumentaria'
+      }
+    ]
 
   
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    setProductsFormData(data)
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    setProductsFormData(data) //este set podría venir de context para guardar la info ahí
+    fetch("localhost:8080/api/gwen", {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
   };
 
   useEffect( ()=>{
@@ -100,21 +112,27 @@ export default function EntryForm() {
           <Typography component="h1" variant="h1" my={2} sx={{color:'secondary.dark'}}>
             Entrada de productos
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <InputLabel id="category-label">Categoría</InputLabel>
-        <Select
-        fullWidth
-          labelId="category-labelid"
-          id="category"
-          value={category}
-          label="Categoría *"
-          onChange={handleChange}
-        >
-          <MenuItem value={"libros"}>Libros</MenuItem>
-          <MenuItem value={"chops"}>Chops</MenuItem>
-          <MenuItem value={"indumentaria"}>Indumentaria</MenuItem>
-        </Select>
+          <Box component="form"  onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+
         <FormHelperText>Required</FormHelperText>
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          id="category"
+          name="category"
+          select
+          label="Select"
+          defaultValue=""
+          helperText="Categoría"
+        >
+          {categories.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+        
             <TextField
               margin="normal"
               required
@@ -159,6 +177,7 @@ export default function EntryForm() {
               name="stock"
               label="Stock inicial"
               id="stock"
+              type='number'
             />
           
             <Button
