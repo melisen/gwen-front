@@ -9,40 +9,43 @@ import Box from '@mui/material/Box';
 import CreateIcon from '@mui/icons-material/Create';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
-import Select from '@mui/material/Select';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-import TableContainer from '@mui/material/TableContainer';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import "./EntryForm.css"
-
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import ProductsTable from './ProductsTable';
 
 
 
 export default function EntryForm() {
-    const [productsFormData, setProductsFormData] = useState({})
+    const [productFormData, setProductFormData] = useState({})
     const [error, setError] = useState(false);
     const [productosLista, setProductosLista] = useState([]);
+
+    const [category, setCategory] = useState(() => {
+      const guardarLocal = localStorage.getItem('category')
+      return guardarLocal ? JSON.parse(guardarLocal) : ""
+      });
+    const [title, setTitle] = useState(() => {
+      const guardarLocal = localStorage.getItem('title')
+      return guardarLocal ? JSON.parse(guardarLocal) : ""
+      });
+    const [price, setPrice] = useState(() => {
+      const guardarLocal = localStorage.getItem('price')
+      return guardarLocal ? JSON.parse(guardarLocal) : ""
+      });
+    const [thumbnail, setThumbnail] = useState(() => {
+      const guardarLocal = localStorage.getItem('thumbnail')
+      return guardarLocal ? JSON.parse(guardarLocal) : ""
+      });
+    const [description, setDescription] = useState(() => {
+      const guardarLocal = localStorage.getItem('description')
+      return guardarLocal ? JSON.parse(guardarLocal) : ""
+      });
+    const [stock, setStock] = useState(() => {
+      const guardarLocal = localStorage.getItem('stock')
+      return guardarLocal ? JSON.parse(guardarLocal) : ""
+      });
+    
 
     const categories = [
       {
@@ -59,20 +62,49 @@ export default function EntryForm() {
       }
     ]
 
+
+    function clearForm(){
+      setCategory("");
+      localStorage.setItem('category', JSON.stringify(""));        
+      setTitle("");
+      localStorage.setItem('title', JSON.stringify(""));
+      setPrice("");
+      localStorage.setItem('price', JSON.stringify(""));    
+      setThumbnail("");
+      localStorage.setItem('thumbnail', JSON.stringify(""));    
+      setDescription("");
+      localStorage.setItem('description', JSON.stringify(""));    
+      setStock("");
+      localStorage.setItem('stock', JSON.stringify(""));    
+      
+    }
   
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    setProductsFormData(data) //este set podría venir de context para guardar la info ahí
-    fetch("localhost:8080/api/gwen", {
+    const newProduct = {
+      title: title,
+      price: price,
+      category: category,
+      thumbnail: thumbnail,
+      description: description,
+      stock: stock,
+    }
+    setProductFormData(newProduct)
+    fetch("http://localhost:8080/api/gwen", {
       method: 'POST',
-      body: JSON.stringify(data),
+      body: JSON.stringify(newProduct),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': "application/json"
       },
     })
-  };
+    .then(resp => {
+      if (resp.status === 200) {
+        console.log( resp.json())
+        clearForm() 
+      };
+    })
+  }
 
   useEffect( ()=>{
     const ejecutarFetch = async (url) =>{
@@ -84,15 +116,14 @@ export default function EntryForm() {
           console.error(error);
       }
       }
-
-      ejecutarFetch("./json-local/productos.json")
+      ejecutarFetch('http://localhost:8080/api/gwen')
       .then(res => {
           setProductosLista(res);
       })
         .catch((error)=>{
          setError(true);
         })  
-        }, [productsFormData]);
+        }, [productFormData]);
 
   return (
     <>
@@ -125,6 +156,7 @@ export default function EntryForm() {
           label="Select"
           defaultValue=""
           helperText="Categoría"
+          onChange={(e) => setCategory(e.target.value)}
         >
           {categories.map((option) => (
             <MenuItem key={option.value} value={option.value}>
@@ -142,6 +174,7 @@ export default function EntryForm() {
               name="title"
               inputProps={{ maxLength: 56 }}
               autoFocus
+              onChange={(e) => setTitle(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -151,6 +184,7 @@ export default function EntryForm() {
               label="Precio"
               id="price"
               type='number'
+              onChange={(e) => setPrice(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -159,6 +193,7 @@ export default function EntryForm() {
               name="thumbnail"
               label="URL de imagen"
               id="thumbnail"
+              onChange={(e) => setThumbnail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -169,6 +204,7 @@ export default function EntryForm() {
               name="description"
               label="Descripción"
               id="description"
+              onChange={(e) => setDescription(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -178,6 +214,7 @@ export default function EntryForm() {
               label="Stock inicial"
               id="stock"
               type='number'
+              onChange={(e) => setStock(e.target.value)}
             />
           
             <Button
@@ -193,43 +230,7 @@ export default function EntryForm() {
         </Box>
       </Container>
       <Container  maxWidth='1/1'>
-      <TableContainer component={Paper} sx={{backgroundColor:'#4a2222'}}>
-                <Table  aria-label="simple table">
-                <TableHead sx={{fontSize:'1.2rem'}}>
-                  <TableRow>
-        
-                    <TableCell align="center" sx={{fontSize:'1.2rem', color:'secondary.main', fontFamily:'Modern Antiqua'}}>STOCK</TableCell>
-                    <TableCell align="center" sx={{fontSize:'1.2rem', color:'secondary.light', fontFamily:'Modern Antiqua'}}>PRODUCTO</TableCell>
-                    <TableCell align="center" sx={{fontSize:'1.2rem', color:'secondary.main', fontFamily:'Modern Antiqua'}}>PRECIO</TableCell>
-                    <TableCell align="center" sx={{fontSize:'1.2rem', color:'secondary.light', fontFamily:'Modern Antiqua'}}>CATEGORÍA</TableCell>
-                    <TableCell align="center" sx={{fontSize:'1.2rem', color:'secondary.light', fontFamily:'Modern Antiqua'}}>DESCRIPCIÓN</TableCell>
-                    <TableCell align="center" sx={{fontSize:'1.2rem', color:'secondary.light', fontFamily:'Modern Antiqua'}}>FOTO</TableCell>
-                  </TableRow>
-                </TableHead>
-                    <TableBody>
-
-                        {productosLista.map((row) => (
-                        <TableRow  key={row._id} sx={{ '&:last-child td, &:last-child th': { border: 0,  } }}  >
-                            <TableCell align="center" sx={{ fontSize:'1.3rem', color:'secondary.main'}}>{row.stock}</TableCell>
-                            <TableCell align="center"  sx={{fontSize:'1.1rem', color:'secondary.light'}}>{row.title}</TableCell>                    
-                            <TableCell align="center" sx={{fontSize:'1.2rem', color:'secondary.main'}}>$ {row.price}</TableCell>
-                            <TableCell align="center" sx={{fontSize:'1.1rem', color:'secondary.light'}}>{row.category}</TableCell>
-                            <TableCell align="center" sx={{color:'secondary.light'}}>{row.description}</TableCell>
-                            <TableCell align="center"> 
-                                <img
-                                       src={row.thumbnail}
-                                       height={100}
-                                       alt={row.title}
-                                       loading="lazy"
-                                    >
-                                </img>
-                            </TableCell>                           
-        
-                        </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+            <ProductsTable productosLista={productosLista} />
         </Container>
       </>
 
